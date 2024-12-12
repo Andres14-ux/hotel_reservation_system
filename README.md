@@ -41,5 +41,4 @@ de clientes, habitaciones y reservas.
 ```bash
 git clone
 https://github.com/Andres14-ux/hotel_reservations_system.git
-Navegar al directorio de la capa de presentación:
-cd hotel_reservations_system/presentation_layer
+

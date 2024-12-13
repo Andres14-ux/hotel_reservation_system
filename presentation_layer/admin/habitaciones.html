@@ -1,0 +1,41 @@
+<!-- Enlaces a JavaScript -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script>
+    // Cargar habitaciones disponibles al cargar la página
+    $(document).ready(function () {
+        $.ajax({
+            url: '/api/habitaciones/disponibles',
+            method: 'GET',
+            success: function (data) {
+                var habitaciones = data;
+
+                $.each(habitaciones, function (index, habitacion) {
+                    var habitacionHtml = `
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="${habitacion.imagen}" alt="Habitación ${habitacion.numero_habitacion}">
+                                <div class="card-body">
+                                    <h5 class="card-title">Habitación ${habitacion.numero_habitacion}</h5>
+                                    <p class="card-text">${habitacion.descripcion}</p>
+                                    <p class="card-text"><strong>Precio: $${habitacion.precio}</strong></p>
+                                    <a href="login.html" class="btn btn-primary">Reservar</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    $('#habitaciones-disponibles').append(habitacionHtml);
+                });
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

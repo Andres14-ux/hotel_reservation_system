@@ -1,0 +1,40 @@
+// cliente/reservas.html
+$(document).ready(function () {
+    // Verificar si el token existe; si no, redirigir al inicio de sesión
+    var token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = '../login.html';
+        return; // Detener la ejecución si no hay token
+    }
+
+    // Solicitud AJAX para obtener reservas del cliente
+    $.ajax({
+        url: '/api/reservas/cliente', // Endpoint para las reservas del cliente
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token // Enviar token en el encabezado
+        },
+        success: function (data) {
+            // Renderizar las reservas en la tabla
+            $.each(data, function (index, reserva) {
+                var row = `
+                    <tr>
+                        <td>${reserva.id}</td>
+                        <td>${reserva.habitacion_numero}</td>
+                        <td>${reserva.fecha_inicio}</td>
+                        <td>${reserva.fecha_fin}</td>
+                        <td>${reserva.estado}</td>
+                    </tr>
+                `;
+                $('#tabla-reservas tbody').append(row); // Agregar fila a la tabla
+            });
+
+            // Inicializar DataTable en la tabla
+            $('#tabla-reservas').DataTable();
+        },
+        error: function (error) {
+            // Manejar errores en la solicitud
+            alert('Error al cargar las reservas: ' + (error.responseJSON?.message || 'Intenta de nuevo más tarde.'));
+        }
+    });
+});

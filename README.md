@@ -27,7 +27,7 @@ aplicación y se comunica con la base de datos.
 - **Descripción**: Base de datos que almacena la información
 de clientes, habitaciones y reservas.
 
-##Requisitos Previos
+## Requisitos Previos
 
 - **Git**
 - **Python 3**
@@ -35,10 +35,3 @@ de clientes, habitaciones y reservas.
 - **NGINX**
 - **MariaDB**
 - **Acceso a SERVEO** para exponer la aplicación al exterior.
-## Instalación y Configuración
-### Capa de Presentación (VM1)
-1. Clonar el repositorio:
-```bash
-git clone
-https://github.com/Andres14-ux/hotel_reservations_system.git
-
